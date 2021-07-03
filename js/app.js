@@ -28,7 +28,7 @@ const sections = document.querySelectorAll("section");
 function isInViewPort(section){
          let top=section.getBoundingClientRect().top;
             console.log(top);
-         return (top>=0&&top<=50);
+         return (top>=-5&&top<=100);
 }
 
 /**
