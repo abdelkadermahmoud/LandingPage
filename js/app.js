@@ -25,24 +25,10 @@ const sections = document.querySelectorAll("section");
  * Start Helper Functions
  * 
 */
-function isInViewPort(el){
-    var top = el.offsetTop;
-    var left = el.offsetLeft;
-    var width = el.offsetWidth;
-    var height = el.offsetHeight;
-  
-    while(el.offsetParent) {
-      el = el.offsetParent;
-      top += el.offsetTop;
-      left += el.offsetLeft;
-    }
-  
-    return (
-      top >= window.pageYOffset &&
-      left >= window.pageXOffset &&
-      (top + height) <= (window.pageYOffset + window.innerHeight) &&
-      (left + width) <= (window.pageXOffset + window.innerWidth)
-    );
+function isInViewPort(section){
+         let top=section.getBoundingClientRect().top;
+            console.log(top);
+         return (top>=0&&top<=50);
 }
 
 /**
@@ -72,7 +58,6 @@ list.addEventListener("click",(event)=>
     setActiveLink(event.target);//this functuion to highligth the selected item
     const sectionId =event.target.getAttribute("href");
     const section=document.querySelector(sectionId);
-    console.log(section);
     section.scrollIntoView({behavior : "smooth"});
 })
 
