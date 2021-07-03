@@ -30,8 +30,8 @@ function isInViewPort(section){
         return(
             section.left>=0&&
             section.top>=0&&
-            section.bottom<=(window.innerHeight||document.documentElement.clientHeight)&&
-            section.right<=(window.innerWidth||document.documentElement.clientWidth)
+            section.bottom<=(document.documentElement.clientHeight)&&
+            section.right<=(document.documentElement.clientWidth)
         )
 }
 
@@ -42,7 +42,7 @@ function isInViewPort(section){
 */
 
 // build the nav
-function createNavBar() {
+(function createNavBar() {
     sections.forEach(function (section) {
 
         const liItem = document.createElement("li");
@@ -52,14 +52,13 @@ function createNavBar() {
     });
     document.body.querySelector("#navbar__list").appendChild(fragment);
 
-}
+})();
 
 // Add class 'active' to section when near top of viewport
 // Scroll to anchor ID using scrollTO event
 const list=document.getElementById("navbar__list");
-list.addEventListener("click",function(event)
-{
-    event.preventDefault();
+list.addEventListener("click",(event)=>
+{    event.preventDefault();
     setActiveLink(event.target);//this functuion to highligth the selected item
     const sectionId =event.target.getAttribute("href");
     const section=document.querySelector(sectionId);
@@ -74,7 +73,6 @@ list.addEventListener("click",function(event)
 */
 document.addEventListener("scroll",setActiveClass);
 // Build menu 
-createNavBar();
 // Scroll to section on link click
 
 // Set sections as active
